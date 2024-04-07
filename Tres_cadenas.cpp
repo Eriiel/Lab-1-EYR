@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-    string c, CU, CC;
+    string c, CC;
     
     for (int i = 1; i <= 3; ++i) {
         cout << "Introduzca una cadena de caracteres: ";  
-        cin >> c;
+        getline(cin, c);
         CC = CC + c;
     }
     
