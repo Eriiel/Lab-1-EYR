@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    string c, CC;
+    string c, CC= " ";
     
     for (int i = 1; i <= 3; ++i) {                           /*Determina la cantidad de veces que el ciclo se repite que son 3*/
         cout << "Introduzca una cadena de caracteres: ";     /*Permite digitar las cadenas y por cada vuelta del ciclo*/
