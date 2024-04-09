@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
 int main()
 {
     int respuesta;
+    
+    do {
     cout << "Ingrese una opcion: \n";
     cout << "Ingrese 1 para calcular la longitud de una cadena.\n";
     cout << "Ingrese 2 para concatenar 3 cadenas que usted ingrese y calcular su longitud.\n";
@@ -68,41 +71,61 @@ int main()
     }
             break;
         }
+        
+        
         case 4: {
 		string cad1;
-        int lon, lon2, i;
-        string subcad;
-
-        cout << "Ingrese su cadena: ";
-        cin.ignore();
+	    int lon, lon2, i;
+	    string subcad;
+	
+	    cout << "Ingrese su cadena: ";
         getline(cin, cad1);
         lon = cad1.length();
-
+    
         if (lon > 1) {
-        cout << "Su cadena es la siguiente: " << cad1 << endl << "y su longitud es la siguiente: " << lon << endl;
-            } else {
-                cout << "Su cadena es muy corta, ingrese otra" << endl;
-                return 0;
-            }
-
-        cout << "Ingrese la posicion inicial de su subcadena: ";
-            if (!(cin >> i)) {
+        cout << "Su cadena es la siguiente: " << cad1 << endl << "y su longitud es la siguiente (empezando de 0): " << lon << endl;
+        } else {
+        cout << "Su cadena es muy corta, ingrese otra" << endl;
+        return 0;
+        }
+    
+        do {
+    	
+        cout << "Ingrese la posicion inicial de su subcadena : ";
+            if (!(cin >> i)|| i < 0 || i >= lon) {
                 cout << "La posicion inicial debe ser un numero en rango con la cadena" << endl;
-                return 0;
-            }
-
+                cin.clear(); 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            break; 
+        }
+        
+        } while (true);
+            
+        do {
         cout << "Ingrese la longitud de su subcadena: ";
-        cin >> lon2;
-
-            if (i >= 0 && i < lon) {
-                subcad = cad1.substr(i, lon2);
-                cout << "Su subcadena es: " << subcad << endl;
-                } else {
-                cout << "Su subcadena debe ser un numero en rango con la cadena" << endl;
-                return 0;
-
-               }
-	      break;}
+        if (!(cin >> lon2)||lon2 <= 0) {
+            cout << "La longitud debe ser un numero en rango desde la posicion inicial" << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+            } else {
+                break; 
+            }
+    
+         } while (true);
+                
+         if (i >= 0 && i < lon) {
+            subcad = cad1.substr(i, lon2);
+            cout << "Su subcadena es: " << subcad << endl;
+            } else {
+            cout << "Su subcadena debe ser un numero en rango con la cadena" << endl;
+            
+                     return 0;
+                }
+                break;
+            }
+        
         
         case 5: {
         	string c, sc1, sc2;
@@ -136,15 +159,36 @@ int main()
 }while(n != 1);
 			break;
 		}
+		
         case 0: {
-            cout << "Ha cerrado el programa.\n";
-            break;
+                int opc;
+                do {
+                    cout << "\t¿Desea salir del programa?" << endl;
+                    cout << "1. Si" << endl;
+                    cout << "2. No" << endl;
+                    cout << "Opcion: ";
+                    cin >> opc;
+
+                    if (opc == 1) {
+                        cout << "El programa ha terminado :D" << endl;
+                        return 0;
+                    } else if (opc == 2) {
+                        break; // Sale del bucle interno
+                    } else {
+                        cout << "Opcion no valida, seleccione alguna de las 2" << endl;
+                    }
+                } while (true);
+                break;
+            }
+            default:
+                cout << "Opción no válida. Por favor, seleccione una opción del menú." << endl;
+                break;
         }
-        default: {
-            cout << "Su opcion no es valida";
-            break;
-        }
-    }
+    } while (true); //Bucle para volver al menu principal
 
     return 0;
 }
+        	
+
+
+    
