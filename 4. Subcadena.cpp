@@ -5,9 +5,7 @@ using namespace std;
 
 int main() {
 	string cad1;
-	int lon;
-	int lon2;
-	int i;
+	int lon, lon2, i;
 	string subcad;
 	
 	cout << "Ingrese su cadena: ";
@@ -30,15 +28,16 @@ if (lon > 1) {
             
             cout << "Ingrese la longitud de su subcadena: ";
             cin >> lon2;
-            
-            
-    if (i >= 0 && i < lon) {
+                
+            if (i >= 0 && i < lon) {
                 subcad = cad1.substr(i, lon2);
                 cout << "Su subcadena es: " << subcad << endl;
-                } else {
+            } else {
                 cout << "Su subcadena debe ser un numero en rango con la cadena" << endl;
                 return 0;
-}}
+            }
+            
+        }
 
 	 
     
