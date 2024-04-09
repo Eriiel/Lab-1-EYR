@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <cmath>
+#include <limits>
 using namespace std;
 
 int main() {
@@ -13,21 +13,38 @@ int main() {
     lon = cad1.length();
     
 if (lon > 1) {
-        cout << "Su cadena es la siguiente: " << cad1 << endl << "y su longitud es la siguiente: " << lon << endl;
+        cout << "Su cadena es la siguiente: " << cad1 << endl << "y su longitud es la siguiente (empezando de 0): " << lon << endl;
     } else {
         cout << "Su cadena es muy corta, ingrese otra" << endl;
         return 0;
     }
     
-    
-    cout << "Ingrese la posicion inicial de su subcadena: ";
-            if (!(cin >> i)) {
+    do {
+    	
+    cout << "Ingrese la posicion inicial de su subcadena : ";
+            if (!(cin >> i)|| i < 0 || i >= lon) {
                 cout << "La posicion inicial debe ser un numero en rango con la cadena" << endl;
-                return 0;
-            }
+                cin.clear(); 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            break; 
+        }
+        
+    } while (true);
             
-            cout << "Ingrese la longitud de su subcadena: ";
-            cin >> lon2;
+    do {
+        cout << "Ingrese la longitud de su subcadena: ";
+        if (!(cin >> lon2)||lon2 <= 0) {
+            cout << "La longitud debe ser un numero en rango desde la posicion inicial" << endl;
+            cin.clear(); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
+            } else {
+                break; 
+            }
+    
+    
+    } while (true);
                 
             if (i >= 0 && i < lon) {
                 subcad = cad1.substr(i, lon2);
