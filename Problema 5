@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string c, sc1, sc2;
+    int n;
+
+do{
+
+    cout << "Ingresa una cadena: ";
+    getline(cin, c);
+    
+    cout << "Digite la subcadena a eliminar: ";
+    getline(cin, sc1);
+    
+    cout << "Ingrese la subcadena a reemplazar: ";
+    getline(cin, sc2);
+    
+    if (c.length() == 0 ||sc1.length() == 0||sc2.length() == 0) {
+        cout << "No pueden dejar la cadena o subcadenas vacias" << endl;
+    } else if(c[0]==' '||sc1[0]==' '||sc2[0]==' '){
+    	cout << "La cadena o subcadenas deben contener minimo un caracter antes que espacios" << endl;
+    } else {
+        size_t l = c.find(sc1);
+        if (l != string::npos) {
+            c.replace(l, sc1.size(), sc2);
+            cout << "La cadena nueva es: " << c << endl;
+			n = 1;	
+        } else {
+            cout << "La subcadena que quiere eliminar para reemplazar no existe." << endl;
+        }
+    }
+}while(n != 1);
+    return 0;
+}
